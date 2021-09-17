@@ -1,0 +1,7 @@
+<list>
+  <com.projetveille.bean.Admin>
+    <id>1</id>
+    <username>zzz</username>
+    <password>password</password>
+  </com.projetveille.bean.Admin>
+</list>

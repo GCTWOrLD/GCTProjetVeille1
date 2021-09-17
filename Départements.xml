@@ -1,0 +1,18 @@
+<list>
+  <com.projetveille.bean.Departement>
+    <id>1</id>
+    <nom>Ventes</nom>
+  </com.projetveille.bean.Departement>
+  <com.projetveille.bean.Departement>
+    <id>2</id>
+    <nom>R&amp;D</nom>
+  </com.projetveille.bean.Departement>
+  <com.projetveille.bean.Departement>
+    <id>3</id>
+    <nom>Gestion</nom>
+  </com.projetveille.bean.Departement>
+  <com.projetveille.bean.Departement>
+    <id>4</id>
+    <nom>Ressources Humaines</nom>
+  </com.projetveille.bean.Departement>
+</list>

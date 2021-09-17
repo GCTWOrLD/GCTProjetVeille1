@@ -1,0 +1,22 @@
+<list>
+  <com.projetveille.bean.Projet>
+    <id>1</id>
+    <nom>Horus</nom>
+  </com.projetveille.bean.Projet>
+  <com.projetveille.bean.Projet>
+    <id>2</id>
+    <nom>Osiris</nom>
+  </com.projetveille.bean.Projet>
+  <com.projetveille.bean.Projet>
+    <id>3</id>
+    <nom>Anubis</nom>
+  </com.projetveille.bean.Projet>
+  <com.projetveille.bean.Projet>
+    <id>4</id>
+    <nom>Seth</nom>
+  </com.projetveille.bean.Projet>
+  <com.projetveille.bean.Projet>
+    <id>5</id>
+    <nom>Isis</nom>
+  </com.projetveille.bean.Projet>
+</list>
