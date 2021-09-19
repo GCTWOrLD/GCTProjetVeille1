@@ -8,7 +8,17 @@
 </head>
 <body>
 
-<h1> Si vous voyez ceci = Fonctionne !</h1>
+	<h1> Bonjour ${username.username} !</h1>
+
+	<h2> Quelle table voulez-vous consulter?</h2>
+	
+	<a href="employe.jsp">Employés</a>
+	<a href="projet.jsp">Projets</a>
+	<a href="dep.jsp">Départements</a>
+	<br>
+	<br>
+	<a href="index.jsp">Retourner à l'acceuil</a>
+
 
 </body>
 </html>

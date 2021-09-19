@@ -24,8 +24,7 @@
 	<dependency>
     	<groupId>com.h2database</groupId>
     	<artifactId>h2</artifactId>
-    	<version>1.4.200</version>
-    	<scope>test</scope>
+    	<version>1.4.195</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 	<dependency>

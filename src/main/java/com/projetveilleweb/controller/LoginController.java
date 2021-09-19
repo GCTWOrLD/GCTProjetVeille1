@@ -1,7 +1,7 @@
 package com.projetveilleweb.controller;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.projetveille.bean.Departement;
+import com.projetveille.bean.Employe;
+import com.projetveille.bean.Projet;
 import com.projetveille.service.ServiceAdmin;
+import com.projetveille.service.ServiceDepartement;
+import com.projetveille.service.ServiceEmploye;
+import com.projetveille.service.ServiceProjet;
 
 @WebServlet("/loginController")
 public class LoginController extends HttpServlet {
@@ -30,13 +36,19 @@ public class LoginController extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		String action = request.getParameter("action");
 		
-		System.out.println("Working Dir =" + System.getProperty("user.dir"));
-		
 		ServiceAdmin.setList(ServiceAdmin.readAdminXml(FILE));
+		
+		List<Employe> emps = ServiceEmploye.getAllEmploye();
+		List<Departement> deps = ServiceDepartement.getAllDep();
+		List<Projet> projs = ServiceProjet.getAllProjet();
 		
 		if (action.equalsIgnoreCase("loginAdmin")) {
 			if (ServiceAdmin.checkIfUsernameExists(username)) {
 				if (pwd.equals(ServiceAdmin.searchAdminByUsername(username).getPassword())) {
+					request.getSession().setAttribute("username", ServiceAdmin.searchAdminByUsername(username));
+					request.getSession().setAttribute("emps", emps);
+					request.getSession().setAttribute("deps", deps);
+					request.getSession().setAttribute("projs", projs);
 					request.getRequestDispatcher(ADMIN_PATH).forward(request, response);
 				}
 			}else {
@@ -49,16 +61,10 @@ public class LoginController extends HttpServlet {
 		}
 	}
 		
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
