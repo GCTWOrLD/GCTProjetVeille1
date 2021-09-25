@@ -3,6 +3,7 @@ package com.projetveille.service;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -57,20 +58,51 @@ public class ServiceProjet {
 	}
 	
 	public static boolean insertProjet(Projet projet) {
-		
+		Connection connection = ServiceConnection.getConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO Projets VALUES (NULL, ?)");
+			ps.setString(1, projet.getNom());
+			int i = ps.executeUpdate();
+			
+			if (i == 1) {
+				return true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		
 		return false;
 	}
 	
 	public static boolean updateProjet(Projet projet) {
-		
-		
+		Connection connection = ServiceConnection.getConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement("UPDATE Projets SET Nom=? WHERE ProjetID=?");
+			ps.setString(1, projet.getNom());
+			ps.setInt(2, projet.getId());
+			int i = ps.executeUpdate();
+			
+			if (i == 1) {
+				return true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		return false;
 	}
 	
 	public static boolean deleteProjet(int id) {
-		
-		
+		Connection connection = ServiceConnection.getConnection();
+		try {
+			Statement stmt = connection.createStatement();
+			int i = stmt.executeUpdate("DELETE FROM Projets WHERE ProjetID=" + id);
+			
+			if (i == 1) {
+				return true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		return false;
 	}
 	

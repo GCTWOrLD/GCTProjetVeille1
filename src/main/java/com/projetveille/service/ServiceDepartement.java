@@ -3,6 +3,7 @@ package com.projetveille.service;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -56,20 +57,50 @@ public class ServiceDepartement {
 	}
 	
 	public static boolean insertDep(Departement dep) {
-		
-		
+		Connection connection = ServiceConnection.getConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO Départements VALUES (NULL, ?)");
+			ps.setString(1, dep.getNom());
+			int i = ps.executeUpdate();
+			
+			if (i == 1) {
+				return true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		return false;
 	}
 	
 	public static boolean updateDep(Departement dep) {
-		
-		
+		Connection connection = ServiceConnection.getConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement("UPDATE Départements SET Nom=? WHERE DépartementID=?");
+			ps.setString(1, dep.getNom());
+			ps.setInt(2, dep.getId());
+			int i = ps.executeUpdate();
+			
+			if (i == 1) {
+				return true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		return false;
 	}
 	
 	public static boolean deleteDep(int id) {
-		
-		
+		Connection connection = ServiceConnection.getConnection();
+		try {
+			Statement stmt = connection.createStatement();
+			int i = stmt.executeUpdate("DELETE FROM Départements WHERE DépartementID=" + id);
+			
+			if (i == 1) {
+				return true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		return false;
 	}
 	

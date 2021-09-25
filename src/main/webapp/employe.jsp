@@ -25,7 +25,6 @@
 			<th>ID du Projet</th>
 			<th>ID du Département</th>
 			<th></th>
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -37,13 +36,14 @@
 				<td><%= emp.getDateEmbauche() %></td>
 				<td><%= emp.getProjetId() %></td>
 				<td><%= emp.getDepartementId() %></td>
-				<td><a href="adminController?action=delete&id=<%= emp.getId()%>">Supprimer</a>
-				<td><a href="adminController?action=update&id=<%= emp.getId()%>">Mettre à jour</a>
+				<td><a href="adminController?action=deleteEmp&empId=<%= emp.getId()%>">Supprimer</a>
 			</tr>
 		<% } %>
 	</tbody>
 	</table>
-	<br>
+	<button onclick="location.href='updEmp.jsp'" type="button">Mettre à jour un employé</button>
+	<button onclick="location.href='newEmp.jsp'" type="button">Ajouter un nouvel employé</button>
+	<br><br>
 	<a href="adminPannel.jsp">Retour</a>
 </body>
 </html>

@@ -21,7 +21,6 @@
 			<th>Id</th>
 			<th>Nom</th>
 			<th></th>
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,13 +28,14 @@
 			<tr>
 				<td><%= proj.getId() %></td>
 				<td><%= proj.getNom() %></td>
-				<td><a href="adminController?action=delete&id=<%= proj.getId()%>">Supprimer</a>
-				<td><a href="adminController?action=update&id=<%= proj.getId()%>">Mettre à jour</a>
+				<td><a href="adminController?action=deleteProj&projetId=<%= proj.getId()%>">Supprimer</a>
 			</tr>
 		<% } %>
 	</tbody>
 	</table>
-	<br>
+	<button onclick="location.href='updProj.jsp'" type="button">Mettre à jour un projet</button>
+	<button onclick="location.href='newProj.jsp'" type="button">Ajouter un nouveau projet</button>
+	<br><br>
 	<a href="adminPannel.jsp">Retour</a>	
 </body>
 </html>

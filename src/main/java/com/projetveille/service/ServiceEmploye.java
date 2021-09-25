@@ -3,6 +3,7 @@ package com.projetveille.service;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -66,20 +67,59 @@ public class ServiceEmploye {
 	}
 	
 	public static boolean insertEmploye(Employe employe) {
-		
-		
+		Connection connection = ServiceConnection.getConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO Employés VALUES (NULL, ? , ?, ?, ?, ?)");
+			ps.setString(1, employe.getPrenom());
+			ps.setString(2, employe.getNom());
+			ps.setString(3, employe.getDateEmbauche());
+			ps.setInt(4, employe.getProjetId());
+			ps.setInt(5, employe.getDepartementId());
+			int i = ps.executeUpdate();
+			
+			if (i == 1) {
+				return true;
+			}
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		return false;
 	}
 	
 	public static boolean updateEmploye(Employe employe) {
-		
-		
+		Connection connection = ServiceConnection.getConnection();
+		try {
+			PreparedStatement ps = connection.prepareStatement("UPDATE Employés SET Prénom=?, Nom=?, DateEmbauche=?, ProjetId=?, DépartementID=? WHERE EmployéID=?");
+			ps.setString(1, employe.getPrenom());
+			ps.setString(2, employe.getNom());
+			ps.setString(3, employe.getDateEmbauche());
+			ps.setInt(4, employe.getProjetId());
+			ps.setInt(5, employe.getDepartementId());
+			ps.setInt(6, employe.getId());
+			int i = ps.executeUpdate();
+			
+			if (i == 1) {
+				return true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		return false;
 	}
 	
 	public static boolean deleteEmploye(int id) {
-		
-		
+		Connection connection = ServiceConnection.getConnection();
+		try {
+			Statement stmt = connection.createStatement();
+			int i = stmt.executeUpdate("DELETE FROM Employés WHERE EmployéID=" + id);
+			
+			if (i == 1) {
+				return true;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		return false;
 	}
 	

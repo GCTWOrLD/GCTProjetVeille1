@@ -21,7 +21,6 @@
 			<th>Id</th>
 			<th>Nom</th>
 			<th></th>
-			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,13 +28,14 @@
 			<tr>
 				<td><%= dep.getId() %></td>
 				<td><%= dep.getNom() %></td>
-				<td><a href="adminController?action=delete&id=<%= dep.getId()%>">Supprimer</a>
-				<td><a href="adminController?action=update&id=<%= dep.getId()%>">Mettre à jour</a>
+				<td><a href="adminController?action=deleteDep&depId=<%= dep.getId()%>">Supprimer</a>
 			</tr>
 		<% } %>
 	</tbody>
 	</table>
-	<br>
+	<button onclick="location.href='updDep.jsp'" type="button">Mettre à jour un département</button>
+	<button onclick="location.href='newDep.jsp'" type="button">Ajouter un nouveau département</button>
+	<br><br>
 	<a href="adminPannel.jsp">Retour</a>
 </body>
 </html>
