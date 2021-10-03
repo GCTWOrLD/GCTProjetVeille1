@@ -14,6 +14,7 @@ import com.projetveille.bean.Projet;
 import com.projetveille.service.ServiceDepartement;
 import com.projetveille.service.ServiceEmploye;
 import com.projetveille.service.ServiceProjet;
+import com.projetveille.service.ServiceStats;
 
 @WebServlet("/adminController")
 public class AdminController extends HttpServlet {
@@ -33,6 +34,8 @@ public class AdminController extends HttpServlet {
 	private static final String UPD_DEP_PATH = "updDep.jsp";
 	private static final String UPD_PROJ_PATH = "updProj.jsp";
 	
+	private static final String STATS_PATH = "stats.jsp";
+	
 	//Msg Erreur
 	
 	private static final String ERR_EMPTY = "Vous avez laissé un ou plusieurs champs vide.";
@@ -46,6 +49,13 @@ public class AdminController extends HttpServlet {
 			
 			request.getSession().setAttribute("emps", ServiceEmploye.getAllEmploye());
 			request.getRequestDispatcher(EMP_PATH).forward(request, response);
+			
+		} else if (action.equalsIgnoreCase("redirectModEmp")) {
+			int empToUpd = Integer.parseInt(request.getParameter("empId"));
+			Employe emp = ServiceEmploye.getEmploye(empToUpd);
+			
+			request.getSession().setAttribute("empToUpd", emp);
+			request.getRequestDispatcher(UPD_EMP_PATH).forward(request, response);
 			
 		} else if (action.equalsIgnoreCase("updateEmp")) {
 			Integer newId = Integer.valueOf(request.getParameter("newID"));
@@ -96,6 +106,13 @@ public class AdminController extends HttpServlet {
 			request.getSession().setAttribute("deps", ServiceDepartement.getAllDep());
 			request.getRequestDispatcher(DEP_PATH).forward(request, response);
 			
+		} else if (action.equalsIgnoreCase("redirectModDep")) {
+			int depToUpd = Integer.parseInt(request.getParameter("depId"));
+			Departement dep = ServiceDepartement.getDep(depToUpd);
+			
+			request.getSession().setAttribute("depToUpd", dep);
+			request.getRequestDispatcher(UPD_DEP_PATH).forward(request, response);
+			
 		} else if (action.equalsIgnoreCase("updateDep")) {
 			Integer newId = Integer.valueOf(request.getParameter("newID"));
 			String newNom = request.getParameter("newNom");
@@ -133,6 +150,13 @@ public class AdminController extends HttpServlet {
 			request.getSession().setAttribute("projs", ServiceProjet.getAllProjet());
 			request.getRequestDispatcher(PROJ_PATH).forward(request, response);
 			
+		} else if (action.equalsIgnoreCase("redirectModProj")) {
+			int projToUpd = Integer.parseInt(request.getParameter("projId"));
+			Projet proj = ServiceProjet.getProjet(projToUpd);
+			
+			request.getSession().setAttribute("projToUpd", proj);
+			request.getRequestDispatcher(UPD_PROJ_PATH).forward(request, response);
+			
 		} else if (action.equalsIgnoreCase("updateProj")) {
 			Integer newId = Integer.valueOf(request.getParameter("newID"));
 			String newNom = request.getParameter("newNom");
@@ -162,6 +186,15 @@ public class AdminController extends HttpServlet {
 				request.getSession().setAttribute("projs", ServiceProjet.getAllProjet());
 				request.getRequestDispatcher(PROJ_PATH).forward(request, response);
 			}
+		} else if (action.equalsIgnoreCase("stats")) {
+			request.getSession().setAttribute("nbEmps", ServiceStats.getTotalEmp());
+			request.getSession().setAttribute("nbDeps", ServiceStats.getTotalDep());
+			request.getSession().setAttribute("nbProjs", ServiceStats.getTotalProj());
+			
+			request.getSession().setAttribute("senior", ServiceStats.getSeniorEmp());
+			request.getSession().setAttribute("junior", ServiceStats.getJuniorEmp());
+			
+			request.getRequestDispatcher(STATS_PATH).forward(request, response);
 		}
 	}
 	

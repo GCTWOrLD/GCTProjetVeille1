@@ -8,12 +8,15 @@
 <title>Accueil</title>
 <style>
 body {
-	font-family: Arial;
 	color: black;
+	background-image: url("bg.jpg");
 }
 
 h1 {
 	margin-left: 10px;
+	color: white;
+	text-shadow: #000 0px 0px 10px;
+    -webkit-font-smoothing: antialiased;
 }
 
 .split {
@@ -28,12 +31,6 @@ h1 {
 
 .left {
 	left: 0;
-	background-color: white;
-}
-
-.right {
-	right: 0;
-	background-color: white;
 }
 
 .centered {
@@ -42,6 +39,36 @@ h1 {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
+	border-radius: 20px;
+	background-color: #f2f2f2;
+	padding: 20px;
+	border-style: solid;
+}
+
+input[type=text], input[type=password] {
+  	width: 100%;
+  	padding: 12px 20px;
+  	margin: 8px 0;
+  	display: inline-block;
+  	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	box-sizing: border-box;
+}
+
+input[type=submit] {
+	background-color: white; 
+	color: black; 
+	padding: 10px 25px; 
+	text-align: center; 
+	text-decoration: none; 
+	display: inline-block; 
+	font-weight: bold;
+	border-style: solid;
+}
+
+input[type=submit]:hover {
+	background-color: black;
+	color: white;
 }
 
 .centered img {
@@ -51,7 +78,15 @@ h1 {
 
 .err {
 	color: red;
+	margin-left: 10px;
+	text-shadow: #000 0px 0px 10px;
+    -webkit-font-smoothing: antialiased;
 }
+
+label {
+	font-weight: bold;
+}
+
 </style>
 </head>
 <body>
@@ -61,8 +96,8 @@ h1 {
 		<div class="centered">
 			<form method="post" name="admins"
 				action="loginController?action=loginAdmin">
-				Username: <input type="text" name="username" /> <br /> <br />
-				Password: <input type="password" name="pwd" /> <br /> <br /> <input
+				<label>Username:</label><input type="text" name="username" /> <br /> <br />
+				<label>Password:</label><input type="password" name="pwd" /> <br /> <br /> <input
 					type="submit" value="Connexion" />
 			</form>
 		</div>

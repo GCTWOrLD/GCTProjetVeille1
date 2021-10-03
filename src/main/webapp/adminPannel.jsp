@@ -5,6 +5,39 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin Pannel</title>
+<style type="text/css">
+a:link, a:visited, a:hover, a:active { 
+	background-color: white; 
+	color: black; 
+	padding: 10px 25px; 
+	text-align: center; 
+	text-decoration: none; 
+	display: inline-block; 
+	font-weight: bold;
+	border-style: solid;
+}
+
+a:hover {
+	background-color: black;
+	color: white;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+body {
+	background-image: url("bg.jpg");
+}
+
+h1, h2 {
+	color: white;
+	text-shadow: #000 0px 0px 10px;
+    -webkit-font-smoothing: antialiased;
+}
+</style>
 </head>
 <body>
 
@@ -17,8 +50,9 @@
 	<a href="dep.jsp">Départements</a>
 	<br>
 	<br>
-	<a href="index.jsp">Retourner à l'acceuil</a>
-
-
+	 <div id="footer">
+		<a href="index.jsp">Retourner à l'acceuil</a>
+		<a href="adminController?action=stats">Stats</a>
+	 </div>
 </body>
 </html>
